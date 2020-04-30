@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./build/tailwind.css">
+  <link rel="stylesheet" href="./vendor//css/fontawesome-free-5.13.0-web/css/all.min.css">
+</head>
+<body class="antialiased text-white max-h-screen bg-gray-900">
+  <div class="max-w-7xl mx-auto py-2 px-4">
+    <h1 class="text-blue-500 font-semibold text-3xl">Merge Sort Algorithm Visualization</h1>
+  </div>
+
+  <div class="w-full text-center">
+    <div class="array-container inline-block p-4 mx-auto mt-5">
+
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 ">
+    <div class="flex items-center">
+      <button id="start-button" class="mr-4 px-4 py-1 font-semibold rounded hover:bg-gray-800"><i class="mr-2 fas fa-play text-green-500"></i> Start Simulation</button>
+      <button id="pause-button" class="mr-4 hidden px-4 py-1 font-semibold rounded hover:bg-gray-800"><i class="mr-2 fas fa-pause text-yellow-500"></i> Pause Simulation</button>
+      <button id="resume-button" class="mr-4 hidden px-4 py-1 font-semibold rounded hover:bg-gray-800"><i class="mr-2 fas fa-play text-green-500"></i> Resume Simulation</button>
+      <button id="stop-button" class="mr-4 hidden px-4 py-1 font-semibold rounded hover:bg-gray-800"><i class="mr-2 fas fa-stop text-red-500"></i> Stop Simulation</button>
+      <div class="flex items-center">
+        <div id="array-length-container" class="mr-4">
+          <label for="array-length-input" class="mr-4">Array Length</label>
+          <input type="range" min="10" max="300" value="50" id="array-length-input" name="array-length-input">
+        </div>
+        <label for="animation-speed-input" class="mr-4">Animation Speed</label>
+        <input type="range" min="10" max="100" value="50" id="animation-speed-input">
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 py-5">
+    <div class="flex items-start">
+      <div class="w-1/2 mx-2 p-4 bg-gray-800 rounded-lg">
+        <div class="font-mono pb-24">
+          <p><strong class="text-blue-500">MergeSort(</strong> A[0..n-1] <strong class="text-blue-500">)</strong></p>
+          <p class="ml-10 text-gray-400">// Sorts array A[0..n − 1] by recursive mergesort</p>
+          <p class="ml-10 text-gray-400">// Input: An array A[0..n − 1] of orderable elements</p>
+          <p class="ml-10 text-gray-400">// Output: Array A[0..n − 1] sorted in nondecreasing order</p>
+          <p class="ml-10"><strong class="text-red-500">if</strong> n > 1</p>
+          <p class="ml-20"><strong class="text-green-500">copy</strong> A[0..⌊n/2⌋ − 1] <strong class="text-green-500">to</strong> B[0..⌊n/2⌋ − 1]</p>
+          <p class="ml-20"><strong class="text-green-500">copy</strong> A[⌊n/2⌋..n − 1] <strong class="text-green-500">to</strong> C[0..⌈n/2⌉ − 1]</p>
+          <p class="ml-20"><strong class="text-blue-500">MergeSort(</strong> B[0..⌊n/2⌋ − 1] <strong class="text-blue-500">)</strong></p>
+          <p class="ml-20"><strong class="text-blue-500">MergeSort(</strong> C[0..⌈n/2⌉ − 1] <strong class="text-blue-500">)</strong></p>
+          <p class="ml-20"><strong class="text-blue-500">Merge(</strong> B, C, A <strong class="text-blue-500">)</strong> <span class="text-gray-400">// see below</span></p>
+        </div>
+      </div>
+
+      <div class="w-1/2 mx-2 p-4 bg-gray-800 rounded-lg">
+        <div class="font-mono">
+          <p><strong class="text-blue-500">Merge(</strong> B[0..p − 1], C[0..q − 1], A[0..p + q − 1] <strong class="text-blue-500">)</strong></p>
+          <p class="ml-10 text-gray-400">// Merges two sorted arrays into one sorted array</p>
+          <p class="ml-10 text-gray-400">// Input: Arrays B[0..p − 1] and C[0..q − 1] both sorted</p>
+          <p class="ml-10 text-gray-400">// Output: Sorted array A[0..p + q − 1] of the elements of B and C</p>
+          <p class="ml-10">i <strong class="text-green-500">←</strong> 0; j <strong class="text-green-500">←</strong> 0; k <strong class="text-green-500">←</strong> 0;</p>
+          <p class="ml-10"><strong class="text-red-500">while</strong> i < p <strong class="text-indigo-500">and</strong> j < q <strong class="text-red-500">do</strong></p>
+          <p class="ml-20"><strong class="text-red-500">if</strong> B[i] ≤ C[j]</p>
+          <p class="ml-30">A[k] <strong class="text-green-500">←</strong> B[i]; i <strong class="text-green-500">←</strong> i+1</p>
+          <p class="ml-20"><strong class="text-red-500">else</strong> A[k] <strong class="text-green-500">←</strong> C[j]; j <strong class="text-green-500">←</strong> j+1</p>
+          <p class="ml-20">k <strong class="text-green-500">←</strong> k+1</p>
+          <p class="ml-20"><strong class="text-red-500">if</strong> i == p</p>
+          <p class="ml-30"><strong class="text-green-500">copy</strong> C[j..q − 1] <strong class="text-green-500">to</strong> A[k..p + q − 1]</p>
+          <p class="ml-20"><strong class="text-red-500">else</strong> <strong class="text-green-500">copy</strong> B[i..p − 1] <strong class="text-green-500">to</strong> A[k..p + q − 1]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto p-10">
+    <h2 class="mb-4 text-green-500 text-4xl font-semibold">Merge Sort Time Complexity Analysis</h2>
+    <div>
+      Let
+      <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>L</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>k</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       =
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>T</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <msup>
+          <mn>2</mn>
+          <mi>k</mi>
+         </msup>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       and
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mi>n</mi>
+       </math>
+       =
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <msup>
+         <mn>2</mn>
+         <mi>k</mi>
+        </msup>
+       </math>
+       . Then
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>L</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>k</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       =
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>T</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>n</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>,
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>L</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>k - 1</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       =
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>T</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>n / 2</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       , and
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>L</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>k</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       =
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mrow>
+          <mn>2</mn>
+          <mo>&#8290;</mo>
+          <mrow>
+           <mi>L</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mrow>
+            <mi>k</mi>
+            <mo>-</mo>
+            <mn>1</mn>
+           </mrow>
+           <mo>)</mo>
+          </mrow>
+         </mrow>
+         <mo>+</mo>
+         <msup>
+          <mn>2</mn>
+          <mi>k</mi>
+         </msup>
+        </mrow>
+       </math>.
+    </div>
+    <p>Thus,</p>
+    <div class="w-full text-center">
+      <p class="my-1">
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mi>L</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mn>1</mn>
+           <mo>)</mo>
+          </mrow>
+         </math>
+         =
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mn>2</mn>
+            <mo>&#8290;</mo>
+            <mrow>
+             <mi>L</mi>
+             <mo>&#8289;</mo>
+             <mo>(</mo>
+             <mn>0</mn>
+             <mo>)</mo>
+            </mrow>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>1</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1">
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mi>L</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mn>2</mn>
+           <mo>)</mo>
+          </mrow>
+         </math>
+         =
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mn>2</mn>
+            <mo>&#8290;</mo>
+            <mrow>
+             <mi>L</mi>
+             <mo>&#8289;</mo>
+             <mo>(</mo>
+             <mn>1</mn>
+             <mo>)</mo>
+            </mrow>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>2</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1 ml-24">
+        <span class="ml-2"></span>
+        <span class="ml-px"></span>
+        =
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mo>(</mo>
+            <mrow>
+             <mrow>
+              <msup>
+               <mn>2</mn>
+               <mn>2</mn>
+              </msup>
+              <mo>&#8290;</mo>
+              <mrow>
+               <mi>L</mi>
+               <mo>&#8289;</mo>
+               <mo>(</mo>
+               <mn>0</mn>
+               <mo>)</mo>
+              </mrow>
+             </mrow>
+             <mo>+</mo>
+             <msup>
+              <mn>2</mn>
+              <mn>2</mn>
+             </msup>
+            </mrow>
+            <mo>)</mo>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>2</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1">
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mi>L</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mn>3</mn>
+           <mo>)</mo>
+          </mrow>
+         </math>
+         =
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mn>2</mn>
+            <mo>&#8290;</mo>
+            <mrow>
+             <mi>L</mi>
+             <mo>&#8289;</mo>
+             <mo>(</mo>
+             <mn>2</mn>
+             <mo>)</mo>
+            </mrow>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>3</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1 ml-32">
+        <span class="ml-4"></span>
+        <span class="ml-px"></span>
+        =
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mo>(</mo>
+            <mrow>
+             <mrow>
+              <msup>
+               <mn>2</mn>
+               <mn>3</mn>
+              </msup>
+              <mo>&#8290;</mo>
+              <mrow>
+               <mi>L</mi>
+               <mo>&#8289;</mo>
+               <mo>(</mo>
+               <mn>0</mn>
+               <mo>)</mo>
+              </mrow>
+             </mrow>
+             <mo>+</mo>
+             <msup>
+              <mn>2</mn>
+              <mn>3</mn>
+             </msup>
+             <mo>+</mo>
+             <msup>
+              <mn>2</mn>
+              <mn>3</mn>
+             </msup>
+            </mrow>
+            <mo>)</mo>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>3</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1">
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mi>L</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mn>4</mn>
+           <mo>)</mo>
+          </mrow>
+         </math>
+         =
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mn>2</mn>
+            <mo>&#8290;</mo>
+            <mrow>
+             <mi>L</mi>
+             <mo>&#8289;</mo>
+             <mo>(</mo>
+             <mn>3</mn>
+             <mo>)</mo>
+            </mrow>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>4</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1 ml-32">
+        <span class="ml-12"></span>
+        <span class="ml-2"></span>
+        <span class="ml-px"></span>
+        =
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mo>(</mo>
+            <mrow>
+             <mrow>
+              <msup>
+               <mn>2</mn>
+               <mn>4</mn>
+              </msup>
+              <mo>&#8290;</mo>
+              <mrow>
+               <mi>L</mi>
+               <mo>&#8289;</mo>
+               <mo>(</mo>
+               <mn>0</mn>
+               <mo>)</mo>
+              </mrow>
+             </mrow>
+             <mo>+</mo>
+             <msup>
+              <mn>2</mn>
+              <mn>4</mn>
+             </msup>
+             <mo>+</mo>
+             <msup>
+              <mn>2</mn>
+              <mn>4</mn>
+             </msup>
+             <mo>+</mo>
+             <msup>
+              <mn>2</mn>
+              <mn>4</mn>
+             </msup>
+            </mrow>
+            <mo>)</mo>
+           </mrow>
+           <mo>+</mo>
+           <msup>
+            <mn>2</mn>
+            <mn>4</mn>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+      <p class="my-1">...</p>
+      <p class="my-1">
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mi>L</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mi>k</mi>
+           <mo>)</mo>
+          </mrow>
+         </math>
+         =
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <msup>
+           <mn>2</mn>
+           <mi>k</mi>
+          </msup>
+         </math>
+
+
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mrow>
+            <mi>L</mi>
+            <mo>&#8289;</mo>
+            <mo>(</mo>
+            <mn>0</mn>
+            <mo>)</mo>
+           </mrow>
+          </mrow>
+         </math>
+
+         <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mo>+</mo>
+           <msup>
+            <mi>k2</mi>
+            <mi>k</mi>
+           </msup>
+          </mrow>
+         </math>
+      </p>
+
+      <p class="my-1">or</p>
+
+      <p class="my-1">
+        <math xmlns='http://www.w3.org/1998/Math/MathML'>
+          <mrow>
+           <mi>T</mi>
+           <mo>&#8289;</mo>
+           <mo>(</mo>
+           <mi>n</mi>
+           <mo>)</mo>
+          </mrow>
+         </math>
+         =
+         <!-- <mrow>
+              <msub>
+                <mi>log</mi>
+                <mi>2</mi>
+              </msub>
+             <mo>(</mo>
+             <mi>n</mi>
+             <mo>)</mo>
+            </mrow> -->
+          <math xmlns='http://www.w3.org/1998/Math/MathML'>
+            <mrow>
+              <mi>nT</mi>
+              <mo>&#8289;</mo>
+              <mo>(</mo>
+              <mn>1</mn>
+              <mo>)</mo>
+            </mrow>
+          </math>
+
+          <math xmlns='http://www.w3.org/1998/Math/MathML'>
+            <mrow>
+              <mo>+</mo>
+              <mrow>
+                <msub>
+                  <mi>log</mi>
+                  <mi>2</mi>
+                </msub>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>)</mo>
+              </mrow>
+            </mrow>
+          </math>
+
+          <math xmlns='http://www.w3.org/1998/Math/MathML'>
+            <mi>n</mi>
+          </math>
+      </p>
+
+      <p class="my-1">when n is a power of 2</p>
+    </div>
+    <p>Therefore, 
+      <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>T</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mi>n</mi>
+         <mo>)</mo>
+        </mrow>
+       </math>
+       =
+       <math xmlns='http://www.w3.org/1998/Math/MathML'>
+        <mrow>
+         <mi>O</mi>
+         <mo>&#8289;</mo>
+         <mo>(</mo>
+         <mn>
+          <mrow>
+            <mi>n</mi>
+            <mo>&#8290;</mo>
+            <mrow>
+             <mi>log</mi>
+             <mo>&#8289;</mo>
+             <mo>(</mo>
+             <mi>n</mi>
+             <mo>)</mo>
+            </mrow>
+           </mrow>
+         </mn>
+         <mo>)</mo>
+        </mrow>
+       </math>.
+    </p>
+  </div>
+
+  <div class="py-2 text-center bg-indigo-500 border-t-8 border-green-400">
+    <p class="font-bold">© copyright 2020 🔥Onur Güler</p>
+  </div>
+
+  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/algorithms/mergeSort.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>
