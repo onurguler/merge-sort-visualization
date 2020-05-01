@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="./vendor//css/fontawesome-free-5.13.0-web/css/all.min.css">
 </head>
 <body class="antialiased text-white max-h-screen bg-gray-900">
-  <div class="max-w-7xl mx-auto py-2 px-4">
-    <h1 class="text-blue-500 font-semibold text-3xl">Merge Sort Algorithm Visualization</h1>
+  <div class="border-t-8 border-green-400">
+    <div class="max-w-7xl mx-auto py-2 px-4">
+      <h1 class="text-blue-500 font-semibold text-3xl">Merge Sort Algorithm Visualization</h1>
+    </div>
   </div>
 
   <div class="w-full text-center">
@@ -61,11 +63,11 @@
           <p class="ml-10">i <strong class="text-green-500">←</strong> 0; j <strong class="text-green-500">←</strong> 0; k <strong class="text-green-500">←</strong> 0;</p>
           <p class="ml-10"><strong class="text-red-500">while</strong> i < p <strong class="text-indigo-500">and</strong> j < q <strong class="text-red-500">do</strong></p>
           <p class="ml-20"><strong class="text-red-500">if</strong> B[i] ≤ C[j]</p>
-          <p class="ml-30">A[k] <strong class="text-green-500">←</strong> B[i]; i <strong class="text-green-500">←</strong> i+1</p>
+          <p class="ml-32">A[k] <strong class="text-green-500">←</strong> B[i]; i <strong class="text-green-500">←</strong> i+1</p>
           <p class="ml-20"><strong class="text-red-500">else</strong> A[k] <strong class="text-green-500">←</strong> C[j]; j <strong class="text-green-500">←</strong> j+1</p>
-          <p class="ml-20">k <strong class="text-green-500">←</strong> k+1</p>
+          <p class="ml-32">k <strong class="text-green-500">←</strong> k+1</p>
           <p class="ml-20"><strong class="text-red-500">if</strong> i == p</p>
-          <p class="ml-30"><strong class="text-green-500">copy</strong> C[j..q − 1] <strong class="text-green-500">to</strong> A[k..p + q − 1]</p>
+          <p class="ml-32"><strong class="text-green-500">copy</strong> C[j..q − 1] <strong class="text-green-500">to</strong> A[k..p + q − 1]</p>
           <p class="ml-20"><strong class="text-red-500">else</strong> <strong class="text-green-500">copy</strong> B[i..p − 1] <strong class="text-green-500">to</strong> A[k..p + q − 1]</p>
         </div>
       </div>
@@ -509,15 +511,6 @@
           </mrow>
          </math>
          =
-         <!-- <mrow>
-              <msub>
-                <mi>log</mi>
-                <mi>2</mi>
-              </msub>
-             <mo>(</mo>
-             <mi>n</mi>
-             <mo>)</mo>
-            </mrow> -->
           <math xmlns='http://www.w3.org/1998/Math/MathML'>
             <mrow>
               <mi>nT</mi>
